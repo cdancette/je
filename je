@@ -14,7 +14,7 @@ def print_type(curr):
         if len(curr) < 10:
             print("Keys: ", curr.keys())
     else:
-        print(f"other")
+        print(type(curr).__name__)
         if len(repr(curr)) > 20:
             print(curr)
 
@@ -28,6 +28,7 @@ stack = [data]
 print_type(data)
 names = []
 
+print("Press ? to get help")
 while True:
     names_repr = '.'.join(names)
     curr = stack[-1]
@@ -55,6 +56,17 @@ while True:
             print_type(stack[-1])
         else:
             print(f"Unknown key {name}")
+    elif command == "?":
+        print("Available commands:"
+        "keys or k - print all keys of a dictionnary",
+        ".<key> - go to a specific key. Example: .foo for a dict like {'foo': 'bar'}",
+        "<int> - go to a specific index of a list",
+        "print or p - print the current value. Warning, it might print a lot of data",
+        "up or u - go up one level in the tree",
+        "quit or q - quit the program",
+        sep="\n"
+        )
+
     elif int_command is not None:
         stack.append(curr[int_command])
         names.append(command)
